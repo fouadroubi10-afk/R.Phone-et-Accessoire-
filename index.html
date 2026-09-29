@@ -1,289 +1,416 @@
 <!doctype html>
 
-<html lang="ar" dir="rtl">
-<head>
+<html lang="ar" dir="rtl"><head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>R. Phone et Accessoire</title><link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script></head><body><header class="hero">
-  <img src="logo.png" alt="R. Phone et Accessoire">
-  <h1>R. Phone et Accessoire</h1>
-  <p>إكسسوارات الهواتف</p>
-</header><main class="wrap">  <div id="filters" class="filters"></div>  <section id="products" class="grid"></section>  <p id="empty" class="muted" style="text-align:center;display:none">
-    لا توجد منتجات حاليًا.
-  </p>  <p id="error" style="text-align:center;color:red;"></p>  <section class="contact">
-    <h2>تواصل معنا</h2><div class="socials">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>R. Phone et Accessoire</title><link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js?v=10"></script></head><body><header class="hero"><img src="logo.png" alt="R. Phone et Accessoire"><h1>R. Phone et Accessoire</h1><p>إكسسوارات الهواتف</p></header><main class="wrap"><div id="filters" class="filters"></div><section id="products" class="grid"></section><p
+id="empty"
+class="muted"
+style="text-align:center;display:none"
+>
+لا توجد منتجات حاليًا.
+</p><p
+id="error"
+style="text-align:center;color:red;"
+></p><section class="contact"><h2>تواصل معنا</h2><div class="socials"><a
+href="https://www.instagram.com/r.phone28/"
+target="_blank"
 
-  <a href="https://www.instagram.com/r.phone28/" target="_blank">
-    <img src="https://cdn.simpleicons.org/instagram/ffffff">
-    Instagram
-  </a>
+«»
 
-  <a href="https://www.facebook.com/share/19WoBY8E32/" target="_blank">
-    <img src="https://cdn.simpleicons.org/facebook/ffffff">
-    Facebook
-  </a>
+<img src="https://cdn.simpleicons.org/instagram/ffffff">
+Instagram
+</a><a
+href="https://www.facebook.com/share/19WoBY8E32/"
+target="_blank"
 
-  <a href="https://wa.me/213659788783" target="_blank">
-    <img src="https://cdn.simpleicons.org/whatsapp/ffffff">
-    WhatsApp: 0659788783
-  </a>
+«»
 
-  <a href="https://www.tiktok.com/@moh_algeria1" target="_blank">
-    <img src="https://cdn.simpleicons.org/tiktok/ffffff">
-    TikTok
-  </a>
+<img src="https://cdn.simpleicons.org/facebook/ffffff">
+Facebook
+</a><a
+href="https://wa.me/213659788783"
+target="_blank"
 
-</div>
+«»
 
-  </section></main><script>
+<img src="https://cdn.simpleicons.org/whatsapp/ffffff">
+WhatsApp: 0659788783
+</a><a
+href="https://www.tiktok.com/@moh_algeria1"
+target="_blank"
+
+«»
+
+<img src="https://cdn.simpleicons.org/tiktok/ffffff">
+TikTok
+</a></div></section></main><script>
 
 const db = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
+SUPABASE_URL,
+SUPABASE_ANON_KEY
 );
 
+
 let allProducts = [];
+
 let selectedCategory = "الكل";
 
 
 function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"']/g, function(char) {
-    return {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[char];
-  });
+
+return String(value ?? "").replace(
+/[&<>"']/g,
+function(char) {
+
+return {
+"&": "&amp;",
+"<": "&lt;",
+">": "&gt;",
+'"': "&quot;",
+"'": "&#39;"
+}[char];
+
+}
+);
+
 }
 
 
 function escapeAttribute(value) {
-  return escapeHtml(value);
+
+return escapeHtml(value);
+
 }
 
 
 async function loadProducts() {
 
-  const products = document.getElementById("products");
-  const empty = document.getElementById("empty");
-  const error = document.getElementById("error");
+const products =
+document.getElementById("products");
 
-  products.innerHTML =
-    "<p style='text-align:center'>جارٍ تحميل المنتجات...</p>";
+const empty =
+document.getElementById("empty");
 
-  empty.style.display = "none";
-  error.textContent = "";
+const error =
+document.getElementById("error");
 
-  try {
 
-    const result = await db
-      .from("products")
-      .select("*")
-      .order("created_at", {
-        ascending: false
-      });
+products.innerHTML =
+"<p style='text-align:center'>جارٍ تحميل المنتجات...</p>";
 
-    if (result.error) {
+empty.style.display = "none";
 
-      products.innerHTML = "";
+error.textContent = "";
 
-      error.textContent =
-        "خطأ في تحميل المنتجات: " +
-        result.error.message;
 
-      return;
-    }
+try {
 
-    allProducts = result.data || [];
 
-    drawFilters();
-    drawProducts();
+const result =
+await db
+.from("products")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
 
-  } catch (e) {
 
-    products.innerHTML = "";
+if (result.error) {
 
-    error.textContent =
-      "حدث خطأ: " +
-      String(e?.message || e);
+products.innerHTML = "";
 
-  }
+error.textContent =
+"خطأ في تحميل المنتجات: " +
+result.error.message;
+
+return;
+
+}
+
+
+allProducts =
+result.data || [];
+
+
+drawFilters();
+
+drawProducts();
+
+
+} catch (e) {
+
+
+products.innerHTML = "";
+
+error.textContent =
+"حدث خطأ: " +
+String(e?.message || e);
+
+
+}
+
 }
 
 
 function drawFilters() {
 
-  const filters =
-    document.getElementById("filters");
+const filters =
+document.getElementById("filters");
 
-  const categories = [
-    "الكل",
-    ...new Set(
-      allProducts
-        .map(function(product) {
-          return product.category;
-        })
-        .filter(Boolean)
-    )
-  ];
 
-  filters.innerHTML =
-    categories.map(function(category) {
+const categories = [
 
-      return `
-        <button
-          class="${category === selectedCategory ? "active" : ""}"
-          data-category="${escapeAttribute(category)}"
-        >
-          ${escapeHtml(category)}
-        </button>
-      `;
+"الكل",
 
-    }).join("");
+...new Set(
 
-  filters
-    .querySelectorAll("button")
-    .forEach(function(button) {
+allProducts
+.map(function(product) {
 
-      button.addEventListener("click", function() {
+return product.category;
 
-        selectedCategory =
-          button.getAttribute("data-category");
+})
+.filter(Boolean)
 
-        drawFilters();
-        drawProducts();
+)
 
-      });
+];
 
-    });
+
+filters.innerHTML =
+categories.map(function(category) {
+
+return `
+
+<button
+class="${category === selectedCategory ? "active" : ""}"
+data-category="${escapeAttribute(category)}"
+>
+
+${escapeHtml(category)}
+
+</button>
+
+`;
+
+}).join("");
+
+
+filters
+.querySelectorAll("button")
+.forEach(function(button) {
+
+
+button.addEventListener(
+"click",
+function() {
+
+
+selectedCategory =
+button.getAttribute(
+"data-category"
+);
+
+
+drawFilters();
+
+drawProducts();
+
+
+}
+);
+
+});
+
+
 }
 
 
 function drawProducts() {
 
-  const products =
-    document.getElementById("products");
 
-  const empty =
-    document.getElementById("empty");
-
-  const list =
-    selectedCategory === "الكل"
-      ? allProducts
-      : allProducts.filter(function(product) {
-          return product.category === selectedCategory;
-        });
+const products =
+document.getElementById("products");
 
 
-  if (!list.length) {
-
-    products.innerHTML = "";
-
-    empty.style.display = "block";
-
-    return;
-  }
+const empty =
+document.getElementById("empty");
 
 
-  empty.style.display = "none";
+const list =
+selectedCategory === "الكل"
+
+? allProducts
+
+: allProducts.filter(
+function(product) {
+
+return product.category ===
+selectedCategory;
+
+}
+);
 
 
-  products.innerHTML =
-    list.map(function(product) {
+if (!list.length) {
 
-      const name =
-        escapeHtml(product.name || "");
+products.innerHTML = "";
 
-      const description =
-        escapeHtml(product.description || "");
+empty.style.display = "block";
 
-      const category =
-        escapeHtml(
-          product.category || "إكسسوارات"
-        );
+return;
 
-      const price =
-        Number(product.price || 0)
-          .toLocaleString("fr-DZ");
+}
 
 
-      const image =
-        product.image_url
-          ? `
-            <img
-              src="${escapeAttribute(product.image_url)}"
-              alt="${name}"
-              loading="lazy"
-            >
-          `
-          : `
-            <div
-              style="
-                height:190px;
-                background:#eee;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-              "
-            >
-              لا توجد صورة
-            </div>
-          `;
+empty.style.display = "none";
 
 
-      const message =
-        encodeURIComponent(
-          "السلام عليكم، أريد طلب: " +
-          (product.name || "") +
-          " بسعر " +
-          (product.price || 0) +
-          " دج"
-        );
+products.innerHTML =
+
+list.map(function(product) {
 
 
-      return `
-        <article class="card">
+const name =
+escapeHtml(
+product.name || ""
+);
 
-          ${image}
 
-          <div class="card-body">
+const description =
+escapeHtml(
+product.description || ""
+);
 
-            <div class="cat">
-              ${category}
-            </div>
 
-            <h3>
-              ${name}
-            </h3>
+const category =
+escapeHtml(
+product.category ||
+"إكسسوارات"
+);
 
-            <p>
-              ${description}
-            </p>
 
-            <div class="price">
-              ${price} دج
-            </div>
+const price =
+Number(
+product.price || 0
+)
+.toLocaleString("fr-DZ");
 
-            <a
-              class="wa"
-              target="_blank"
-              href="https://wa.me/213659788783?text=${message}"
-            >
-              اطلب عبر واتساب
-            </a>
 
-          </div>
+const image =
 
-        </article>
-      `;
+product.image_url
 
-    }).join("");
+? `
+
+<img
+src="${escapeAttribute(product.image_url)}"
+alt="${name}"
+loading="lazy"
+>
+
+`
+
+:
+
+`
+
+<div
+style="
+height:190px;
+background:#eee;
+display:flex;
+align-items:center;
+justify-content:center;
+"
+>
+لا توجد صورة
+</div>
+
+`;
+
+
+const message =
+encodeURIComponent(
+
+"السلام عليكم، أريد طلب: " +
+
+(product.name || "") +
+
+" بسعر " +
+
+(product.price || 0) +
+
+" دج"
+
+);
+
+
+return `
+
+<article class="card">
+
+${image}
+
+
+<div class="card-body">
+
+
+<div class="cat">
+
+${category}
+
+</div>
+
+
+<h3>
+
+${name}
+
+</h3>
+
+
+<p>
+
+${description}
+
+</p>
+
+
+<div class="price">
+
+${price} دج
+
+</div>
+
+
+<a
+class="wa"
+target="_blank"
+href="https://wa.me/213659788783?text=${message}"
+>
+
+اطلب عبر واتساب
+
+</a>
+
+
+</div>
+
+</article>
+
+`;
+
+
+}).join("");
+
+
 }
 
 
 loadProducts();
 
-</script></body>
-</html>
+</script></body></html>
