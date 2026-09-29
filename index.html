@@ -8,6 +8,7 @@
 <title>R. Phone et Accessoire</title>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -21,7 +22,7 @@ body{
 }
 
 /* =========================
-   HEADER
+   HEADER - GLASS
 ========================= */
 
 .hero{
@@ -31,13 +32,16 @@ body{
   padding:30px 20px 25px;
   text-align:center;
   color:#fff;
-  background:rgba(10,10,10,.86);
+
+  background:rgba(10,10,10,.82);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
+
   border:1px solid rgba(255,255,255,.16);
   border-radius:26px;
-  box-shadow:0 15px 45px rgba(0,0,0,.18);
-  overflow:hidden;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.18);
 }
 
 .hero::before{
@@ -47,7 +51,7 @@ body{
   border-radius:26px;
   background:linear-gradient(
     135deg,
-    rgba(255,255,255,.13),
+    rgba(255,255,255,.12),
     transparent 45%
   );
   pointer-events:none;
@@ -66,6 +70,7 @@ body{
   margin:4px 0;
   font-size:27px;
   font-weight:900;
+  letter-spacing:.3px;
 }
 
 .hero p{
@@ -81,4 +86,910 @@ body{
 
 .wrap{
   width:min(1100px,94%);
- 
+  margin:22px auto 40px;
+}
+
+/* =========================
+   SEARCH GLASS
+========================= */
+
+.search-box{
+  max-width:650px;
+  margin:0 auto 18px;
+}
+
+.search-box input{
+  width:100%;
+  padding:15px 21px;
+
+  border:1px solid #d8d8d8;
+  border-radius:18px;
+
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  color:#111;
+  font-size:15px;
+  outline:none;
+  text-align:right;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.07);
+
+  transition:.2s;
+}
+
+.search-box input:focus{
+  background:#fff;
+  border-color:#111;
+  box-shadow:
+    0 8px 28px rgba(0,0,0,.12);
+}
+
+.search-box input::placeholder{
+  color:#888;
+}
+
+/* =========================
+   SMALL CATEGORY BUTTONS
+========================= */
+
+.filters{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:20px;
+}
+
+.filters button{
+  border:1px solid #d5d5d5;
+
+  background:rgba(255,255,255,.72);
+  color:#222;
+
+  padding:7px 12px;
+  border-radius:20px;
+
+  cursor:pointer;
+  font-size:12px;
+  font-weight:600;
+
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.05);
+
+  transition:.2s;
+}
+
+.filters button:hover{
+  background:#fff;
+  transform:translateY(-1px);
+}
+
+.filters button.active{
+  background:#080808;
+  color:#fff;
+  border-color:#080808;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.18);
+}
+
+/* =========================
+   STATUS
+========================= */
+
+#status{
+  margin:10px 0 20px;
+  text-align:center;
+  font-size:13px;
+}
+
+.muted{
+  color:#777;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fill,minmax(230px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:rgba(255,255,255,.88);
+
+  border:1px solid rgba(220,220,220,.9);
+  border-radius:20px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.07);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+    0 14px 32px rgba(0,0,0,.13);
+}
+
+.card>img{
+  width:100%;
+  height:220px;
+
+  display:block;
+  object-fit:contain;
+
+  background:#fff;
+  padding:18px;
+}
+
+.card-body{
+  padding:16px;
+  border-top:1px solid #eee;
+}
+
+.cat{
+  color:#888;
+  font-size:11px;
+  margin-bottom:6px;
+}
+
+.card h3{
+  margin:0 0 7px;
+  font-size:18px;
+  font-weight:800;
+}
+
+.card p{
+  color:#666;
+  font-size:13px;
+  line-height:1.6;
+
+  min-height:22px;
+
+  margin:0 0 12px;
+}
+
+.price{
+  font-size:20px;
+  font-weight:900;
+
+  margin-bottom:13px;
+  color:#050505;
+}
+
+.wa{
+  display:block;
+  width:100%;
+
+  text-align:center;
+  text-decoration:none;
+
+  background:#080808;
+  color:#fff;
+
+  padding:11px;
+  border-radius:11px;
+
+  font-size:13px;
+  font-weight:bold;
+
+  transition:.2s;
+}
+
+.wa:hover{
+  background:#252525;
+  transform:translateY(-1px);
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+  margin-top:45px;
+  padding:28px 10px;
+
+  text-align:center;
+
+  border-top:1px solid #ddd;
+}
+
+.contact h2{
+  margin:0 0 18px;
+  font-size:20px;
+}
+
+.socials{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:9px;
+}
+
+.socials a{
+  width:210px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  text-decoration:none;
+
+  color:#fff;
+  background:#080808;
+
+  padding:9px 14px;
+  border-radius:10px;
+
+  font-size:13px;
+
+  transition:.2s;
+}
+
+.socials a:hover{
+  background:#252525;
+}
+
+.socials img{
+  width:18px;
+  height:18px;
+  object-fit:contain;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  .hero{
+    width:94%;
+    margin-top:10px;
+    padding:23px 12px 21px;
+    border-radius:22px;
+  }
+
+  .hero img{
+    width:72px;
+    height:72px;
+  }
+
+  .hero h1{
+    font-size:21px;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .wrap{
+    width:94%;
+    margin-top:18px;
+  }
+
+  .search-box{
+    margin-bottom:14px;
+  }
+
+  .search-box input{
+    padding:13px 16px;
+    font-size:14px;
+    border-radius:16px;
+  }
+
+  .filters{
+    gap:5px;
+    margin-bottom:18px;
+  }
+
+  .filters button{
+    padding:7px 10px;
+    font-size:11px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:11px;
+  }
+
+  .card{
+    border-radius:14px;
+  }
+
+  .card>img{
+    height:155px;
+    padding:9px;
+  }
+
+  .card-body{
+    padding:10px;
+  }
+
+  .cat{
+    font-size:10px;
+  }
+
+  .card h3{
+    font-size:14px;
+  }
+
+  .card p{
+    font-size:11px;
+    line-height:1.5;
+  }
+
+  .price{
+    font-size:16px;
+  }
+
+  .wa{
+    padding:9px 4px;
+    font-size:11px;
+  }
+
+  .socials a{
+    width:195px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="hero">
+
+  <img
+    src="logo.png"
+    alt="R. Phone et Accessoire"
+  >
+
+  <h1>
+    R. Phone et Accessoire
+  </h1>
+
+  <p>
+    إكسسوارات الهواتف
+  </p>
+
+</header>
+
+
+<main class="wrap">
+
+
+<!-- البحث -->
+
+<div class="search-box">
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="ابحث عن منتج..."
+    autocomplete="off"
+  >
+
+</div>
+
+
+<!-- الأقسام -->
+
+<div
+  class="filters"
+  id="filters"
+>
+
+  <button
+    class="active"
+    data-category="all"
+  >
+    الكل
+  </button>
+
+  <button data-category="شواحن">
+    شواحن
+  </button>
+
+  <button data-category="ساعات ذكية">
+    ساعات ذكية
+  </button>
+
+  <button data-category="سماعات أذن">
+    سماعات أذن
+  </button>
+
+  <button data-category="سماعات رأس">
+    سماعات رأس
+  </button>
+
+  <button data-category="باور بانك">
+    باور بانك
+  </button>
+
+  <button data-category="مكبرات صوت">
+    مكبرات صوت
+  </button>
+
+  <button data-category="أخرى">
+    أخرى
+  </button>
+
+</div>
+
+
+<!-- حالة الموقع -->
+
+<p
+  id="status"
+  class="muted"
+>
+  جاري تشغيل الموقع...
+</p>
+
+
+<!-- المنتجات -->
+
+<section
+  id="products"
+  class="grid"
+></section>
+
+
+<!-- الأخطاء -->
+
+<p
+  id="error"
+  class="muted"
+  style="text-align:center;"
+></p>
+
+
+<!-- التواصل -->
+
+<section class="contact">
+
+  <h2>
+    تواصل معنا
+  </h2>
+
+  <div class="socials">
+
+
+    <a
+      href="https://www.instagram.com/r.phone28/"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <img
+        src="instagram.png"
+        alt="Instagram"
+      >
+
+      Instagram
+
+    </a>
+
+
+    <a
+      href="https://www.facebook.com/share/19WoBY8E32/"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <img
+        src="facebook.png"
+        alt="Facebook"
+      >
+
+      Facebook
+
+    </a>
+
+
+    <a
+      href="https://wa.me/213659788783"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <img
+        src="whatsapp.png"
+        alt="WhatsApp"
+      >
+
+      WhatsApp
+
+    </a>
+
+
+    <a
+      href="https://www.tiktok.com/@moh_algeria1"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <img
+        src="tiktok.png"
+        alt="TikTok"
+      >
+
+      TikTok
+
+    </a>
+
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     SUPABASE CONFIG
+========================= -->
+
+<script src="config.js?v=31"></script>
+
+
+<script>
+
+(function(){
+
+
+  let allProducts=[];
+
+  let currentCategory="all";
+
+
+  const productsEl=
+    document.getElementById("products");
+
+  const statusEl=
+    document.getElementById("status");
+
+  const errorEl=
+    document.getElementById("error");
+
+  const searchInput=
+    document.getElementById("searchInput");
+
+  const filters=
+    document.getElementById("filters");
+
+
+  function formatPrice(value){
+
+    return Number(value)
+      .toLocaleString("fr-DZ")
+      +" DA";
+
+  }
+
+
+  function renderProducts(){
+
+    productsEl.innerHTML="";
+
+
+    const searchText=
+      String(searchInput.value||"")
+      .trim()
+      .toLowerCase();
+
+
+    const filtered=
+      allProducts.filter(function(product){
+
+        const categoryMatch=
+          currentCategory==="all" ||
+          product.category===currentCategory;
+
+
+        const name=
+          String(product.name||"")
+          .toLowerCase();
+
+
+        const description=
+          String(product.description||"")
+          .toLowerCase();
+
+
+        const searchMatch=
+          searchText==="" ||
+          name.includes(searchText) ||
+          description.includes(searchText);
+
+
+        return categoryMatch && searchMatch;
+
+      });
+
+
+    if(filtered.length===0){
+
+      productsEl.innerHTML=
+        '<p class="muted" style="grid-column:1/-1;text-align:center;">لا توجد منتجات.</p>';
+
+      return;
+
+    }
+
+
+    filtered.forEach(function(product){
+
+
+      const card=
+        document.createElement("article");
+
+      card.className="card";
+
+
+      const image=
+        document.createElement("img");
+
+      image.src=
+        product.image_url || "logo.png";
+
+      image.alt=
+        product.name || "منتج";
+
+
+      image.onerror=function(){
+
+        this.src="logo.png";
+
+      };
+
+
+      const body=
+        document.createElement("div");
+
+      body.className="card-body";
+
+
+      const category=
+        document.createElement("div");
+
+      category.className="cat";
+
+      category.textContent=
+        product.category || "";
+
+
+      const name=
+        document.createElement("h3");
+
+      name.textContent=
+        product.name || "";
+
+
+      const description=
+        document.createElement("p");
+
+      description.textContent=
+        product.description || "";
+
+
+      const price=
+        document.createElement("div");
+
+      price.className="price";
+
+      price.textContent=
+        formatPrice(product.price);
+
+
+      const whatsapp=
+        document.createElement("a");
+
+      whatsapp.className="wa";
+
+      whatsapp.target="_blank";
+
+      whatsapp.rel="noopener";
+
+
+      const message=
+        "السلام عليكم، أريد الاستفسار عن المنتج: "+
+        (product.name||"")+
+        " - السعر: "+
+        formatPrice(product.price);
+
+
+      whatsapp.href=
+        "https://wa.me/213659788783?text="+
+        encodeURIComponent(message);
+
+
+      whatsapp.textContent=
+        "طلب عبر واتساب";
+
+
+      body.appendChild(category);
+      body.appendChild(name);
+      body.appendChild(description);
+      body.appendChild(price);
+      body.appendChild(whatsapp);
+
+      card.appendChild(image);
+      card.appendChild(body);
+
+      productsEl.appendChild(card);
+
+    });
+
+  }
+
+
+  async function loadProducts(){
+
+    try{
+
+      statusEl.textContent=
+        "جاري الاتصال بقاعدة البيانات...";
+
+      errorEl.textContent="";
+
+
+      if(
+        typeof SUPABASE_URL==="undefined" ||
+        typeof SUPABASE_ANON_KEY==="undefined"
+      ){
+
+        throw new Error(
+          "ملف config.js غير محمل بشكل صحيح."
+        );
+
+      }
+
+
+      const url=
+        SUPABASE_URL+
+        "/rest/v1/products?select=*&order=created_at.desc";
+
+
+      const response=
+        await fetch(
+          url,
+          {
+            method:"GET",
+
+            headers:{
+              "apikey":
+                SUPABASE_ANON_KEY,
+
+              "Authorization":
+                "Bearer "+
+                SUPABASE_ANON_KEY,
+
+              "Content-Type":
+                "application/json"
+            }
+          }
+        );
+
+
+      if(!response.ok){
+
+        const errorText=
+          await response.text();
+
+        throw new Error(
+          "Supabase HTTP "+
+          response.status+
+          ": "+
+          errorText
+        );
+
+      }
+
+
+      allProducts=
+        await response.json();
+
+
+      statusEl.textContent=
+        "تم تحميل "+
+        allProducts.length+
+        " منتج";
+
+
+      renderProducts();
+
+
+    }catch(error){
+
+      console.error(error);
+
+      statusEl.textContent=
+        "حدث خطأ";
+
+      errorEl.textContent=
+        error.message ||
+        "تعذر تحميل المنتجات.";
+
+    }
+
+  }
+
+
+  filters.addEventListener(
+    "click",
+    function(event){
+
+      const button=
+        event.target.closest("button");
+
+      if(!button)return;
+
+
+      filters
+        .querySelectorAll("button")
+        .forEach(function(btn){
+
+          btn.classList.remove("active");
+
+        });
+
+
+      button.classList.add("active");
+
+
+      currentCategory=
+        button.getAttribute(
+          "data-category"
+        )||"all";
+
+
+      renderProducts();
+
+    }
+  );
+
+
+  searchInput.addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+  loadProducts();
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>
