@@ -30,8 +30,27 @@
 
 <main class="wrap">
 
+
+<!-- البحث -->
+
+<div class="search-box">
+
+<input
+id="search"
+type="search"
+placeholder="ابحث عن منتج..."
+autocomplete="off"
+>
+
+</div>
+
+
+<!-- التصنيفات -->
+
 <div id="filters" class="filters"></div>
 
+
+<!-- المنتجات -->
 
 <section id="products" class="grid"></section>
 
@@ -50,6 +69,8 @@ id="error"
 style="text-align:center;color:red;"
 ></p>
 
+
+<!-- التواصل -->
 
 <section class="contact">
 
@@ -125,6 +146,8 @@ SUPABASE_ANON_KEY
 let allProducts = [];
 
 let selectedCategory = "الكل";
+
+let searchText = "";
 
 
 function escapeHtml(value) {
@@ -223,6 +246,8 @@ String(e?.message || e);
 }
 
 
+/* التصنيفات */
+
 function drawFilters() {
 
 const filters =
@@ -244,6 +269,7 @@ return product.category;
 .filter(Boolean)
 
 )
+
 
 ];
 
@@ -292,6 +318,8 @@ drawProducts();
 }
 
 
+/* المنتجات */
+
 function drawProducts() {
 
 const products =
@@ -301,16 +329,47 @@ const empty =
 document.getElementById("empty");
 
 
+const search =
+searchText
+.toLowerCase()
+.trim();
+
+
 const list =
-selectedCategory === "الكل"
 
-? allProducts
-
-: allProducts.filter(
+allProducts.filter(
 function(product) {
 
-return product.category ===
+
+const categoryMatch =
+
+selectedCategory === "الكل"
+
+? true
+
+: product.category ===
 selectedCategory;
+
+
+const text =
+
+(
+(product.name || "") +
+" " +
+(product.description || "")
+)
+.toLowerCase();
+
+
+const searchMatch =
+
+!search ||
+text.includes(search);
+
+
+return
+categoryMatch &&
+searchMatch;
 
 }
 );
@@ -460,6 +519,23 @@ href="https://wa.me/213659788783?text=${message}"
 }).join("");
 
 }
+
+
+/* البحث */
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+function(event) {
+
+searchText =
+event.target.value;
+
+drawProducts();
+
+}
+);
 
 
 loadProducts();
