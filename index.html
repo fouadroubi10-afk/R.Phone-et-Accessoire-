@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="ar" dir="rtl">
 
 <head>
@@ -78,16 +77,12 @@ style="text-align:center;color:red;"
 
 <div class="socials">
 
-
 <a
 href="https://www.instagram.com/r.phone28/"
 target="_blank"
 >
-
 <img src="https://cdn.simpleicons.org/instagram/ffffff">
-
 Instagram
-
 </a>
 
 
@@ -95,11 +90,8 @@ Instagram
 href="https://www.facebook.com/share/19WoBY8E32/"
 target="_blank"
 >
-
 <img src="https://cdn.simpleicons.org/facebook/ffffff">
-
 Facebook
-
 </a>
 
 
@@ -107,11 +99,8 @@ Facebook
 href="https://wa.me/213659788783"
 target="_blank"
 >
-
 <img src="https://cdn.simpleicons.org/whatsapp/ffffff">
-
 WhatsApp: 0659788783
-
 </a>
 
 
@@ -119,13 +108,9 @@ WhatsApp: 0659788783
 href="https://www.tiktok.com/@moh_algeria1"
 target="_blank"
 >
-
 <img src="https://cdn.simpleicons.org/tiktok/ffffff">
-
 TikTok
-
 </a>
-
 
 </div>
 
@@ -135,7 +120,6 @@ TikTok
 
 
 <script>
-
 
 const db = supabase.createClient(
 SUPABASE_URL,
@@ -199,7 +183,6 @@ error.textContent = "";
 
 try {
 
-
 const result =
 await db
 .from("products")
@@ -225,8 +208,16 @@ return;
 }
 
 
+/* تشخيص مؤقت */
+
 allProducts = result.data || [];
 
+error.textContent =
+"عدد المنتجات التي وصلت للموقع: " +
+allProducts.length;
+
+
+/* عرض المنتجات */
 
 drawFilters();
 
@@ -269,7 +260,6 @@ return product.category;
 .filter(Boolean)
 
 )
-
 
 ];
 
@@ -423,7 +413,9 @@ const image =
 
 product.image_url
 
-? `
+?
+
+`
 
 <img
 src="${escapeAttribute(product.image_url)}"
@@ -539,7 +531,6 @@ drawProducts();
 
 
 loadProducts();
-
 
 </script>
 
