@@ -2,7 +2,9 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="utf-8">
+
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>R. Phone et Accessoire</title>
@@ -10,132 +12,90 @@
 <link rel="stylesheet" href="style.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js?v=13"></script>
+
+<script src="config.js?v=20"></script>
 
 </head>
 
+
 <body>
+
 
 <header class="hero">
 
-<img src="logo.png" alt="R. Phone et Accessoire">
+<img
+src="logo.png"
+alt="R. Phone et Accessoire"
+>
 
-<h1>R. Phone et Accessoire</h1>
+<h1>
+R. Phone et Accessoire
+</h1>
 
-<p>إكسسوارات الهواتف</p>
+<p>
+إكسسوارات الهواتف
+</p>
 
 </header>
 
 
+
 <main class="wrap">
 
-<div id="filters" class="filters"></div>
 
-<section id="products" class="grid"></section>
+<!-- البحث -->
+
+<div class="search-box">
+
+<input
+id="search"
+type="search"
+placeholder="ابحث عن منتج..."
+autocomplete="off"
+>
+
+</div>
+
+
+
+<!-- التصنيفات -->
+
+<div
+id="filters"
+class="filters"
+></div>
+
+
+
+<!-- حالة الموقع -->
+
+<p
+id="status"
+style="
+text-align:center;
+color:#777;
+margin:15px 0;
+"
+>
+جاري الاتصال...
+</p>
+
+
+
+<!-- المنتجات -->
+
+<section
+id="products"
+class="grid"
+></section>
+
+
 
 <p
 id="empty"
 class="muted"
-style="text-align:center;display:none"
+style="
+text-align:center;
+display:none;
+"
 >
-لا توجد منتجات حاليًا.
-</p>
-
-<p
-id="error"
-style="text-align:center;color:red;"
-></p>
-
-
-<section class="contact">
-
-<h2>تواصل معنا</h2>
-
-<div class="socials">
-
-<a
-href="https://www.instagram.com/r.phone28/"
-target="_blank"
->
-<img src="https://cdn.simpleicons.org/instagram/ffffff">
-Instagram
-</a>
-
-<a
-href="https://www.facebook.com/share/19WoBY8E32/"
-target="_blank"
->
-<img src="https://cdn.simpleicons.org/facebook/ffffff">
-Facebook
-</a>
-
-<a
-href="https://wa.me/213659788783"
-target="_blank"
->
-<img src="https://cdn.simpleicons.org/whatsapp/ffffff">
-WhatsApp: 0659788783
-</a>
-
-<a
-href="https://www.tiktok.com/@moh_algeria1"
-target="_blank"
->
-<img src="https://cdn.simpleicons.org/tiktok/ffffff">
-TikTok
-</a>
-
-</div>
-
-</section>
-
-</main>
-
-
-<script>
-
-const db = supabase.createClient(
-SUPABASE_URL,
-SUPABASE_ANON_KEY
-);
-
-let allProducts = [];
-
-let selectedCategory = "الكل";
-
-
-async function loadProducts() {
-
-const products =
-document.getElementById("products");
-
-const empty =
-document.getElementById("empty");
-
-const error =
-document.getElementById("error");
-
-
-products.innerHTML =
-"<p style='text-align:center'>جارٍ تحميل المنتجات...</p>";
-
-empty.style.display = "none";
-
-error.textContent = "";
-
-
-try {
-
-const result =
-await db
-.from("products")
-.select("*")
-.order(
-"created_at",
-{
-ascending: false
-}
-);
-
-
-if (result.error) {
