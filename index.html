@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="style.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js?v=12"></script>
+<script src="config.js?v=13"></script>
 
 </head>
 
@@ -99,8 +99,8 @@ SUPABASE_URL,
 SUPABASE_ANON_KEY
 );
 
-
 let allProducts = [];
+
 let selectedCategory = "الكل";
 
 
@@ -110,4 +110,32 @@ const products =
 document.getElementById("products");
 
 const empty =
-document
+document.getElementById("empty");
+
+const error =
+document.getElementById("error");
+
+
+products.innerHTML =
+"<p style='text-align:center'>جارٍ تحميل المنتجات...</p>";
+
+empty.style.display = "none";
+
+error.textContent = "";
+
+
+try {
+
+const result =
+await db
+.from("products")
+.select("*")
+.order(
+"created_at",
+{
+ascending: false
+}
+);
+
+
+if (result.error) {
